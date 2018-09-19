@@ -14,7 +14,7 @@ When the course instructor provides the new material for the in-class activity,
  you can type this command in the main directory for this repository:
 
 ```
-git remote add download git@github.com:Allegheny-College-Science-310-F2018/class_material
+git remote add download git@github.com:Allegheny-College-Science-310-F2018/CMPSC-310-Class-Material
 ```
 
 You should only need to type this command once; typing the command additional
