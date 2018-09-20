@@ -32,10 +32,6 @@ def resize(image, width = None, height = None, inter = cv2.INTER_AREA):
 	# grab the image size
 	dim = None
 	(h, w) = image.shape[:2]
-'''# We need to keep in mind aspect ratio so the image does
-# not look skewed or distorted -- therefore, we calculate
-# the ratio of the new image to the old image. Let's make
-# our new image have a width of 150 pixels'''
 	# if both the width and height are None, then return the
 	# original image
 	if width is None and height is None:
