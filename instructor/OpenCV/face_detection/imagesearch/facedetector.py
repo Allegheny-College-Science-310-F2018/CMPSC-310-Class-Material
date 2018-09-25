@@ -1,13 +1,13 @@
 # import the necessary packages
 import cv2
 
-# define the FaceDetector class, which will encapsulate all the necessary logic to perform face detection
+# define the faceDetector class, which will encapsulate all the necessary logic to perform face detection
 
-class FaceDetector:
+class faceDetector:
 	def __init__(self, faceCascadePath):
 		# load the face detector
 		self.faceCascade = cv2.CascadeClassifier(faceCascadePath)
-	
+
 	# define the detect method to actually find the faces in an image
 	def detect(self, image, scaleFactor = 1.1, minNeighbors = 5, minSize = (30, 30)):
 		# detect the actual faces in the image

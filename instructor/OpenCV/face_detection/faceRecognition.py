@@ -4,7 +4,7 @@
 # import the necessary packages
 
 from __future__ import print_function
-from imagesearch.facedetector import FaceDetector
+from imagesearch.facedetector import faceDetector
 import argparse
 import cv2
 
@@ -23,7 +23,7 @@ image = cv2.imread(args["image"])
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # find faces in the image
-fd = FaceDetector(args["face"])
+fd = faceDetector(args["face"])
 # detects the actual faces in the image by making a call to the detect method
 faceRects = fd.detect(gray, scaleFactor = 1.1, minNeighbors = 5,
 	minSize = (30, 30))
