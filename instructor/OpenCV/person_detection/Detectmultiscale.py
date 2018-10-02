@@ -12,19 +12,19 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
 	help="path to the input image")
-	
+
 # the step size in the x and y direction of our sliding window
 ap.add_argument("-w", "--win-stride", type=str, default="(8, 8)",
 	help="window stride")
-	
+
 # switch controls the amount of pixels the ROI is padded with prior to HOG feature vector extraction and SVM classification
 ap.add_argument("-p", "--padding", type=str, default="(16, 16)",
 	help="object padding")
-	
+
 # control the scale of the image pyramid (allowing us to detect people in images at multiple scales)
 ap.add_argument("-s", "--scale", type=float, default=1.05,
 	help="image pyramid scale")
-	
+
 # apply if want to apply mean-shift grouping to the detected bounding boxes ( to combine multiple boxes around the same object into one)
 ap.add_argument("-m", "--mean-shift", type=int, default=-1,
 	help="whether or not mean shift grouping should be used")
@@ -41,6 +41,22 @@ meanShift = True if args["mean_shift"] > 0 else False
 # the smaller our image is, the faster it will be to process and detect people in it
 image = cv2.imread(args["image"])
 image = imutils.resize(image, width=min(400, image.shape[1]))
+
+# Initialize HOG Descriptor
+hog = cv2.HOGDescriptor()
+# set SVM to be pre-trained for pedestrian detection
+hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+
+start = datetime.datetime.now()
+
+(rects, weights) = hog.detectMultiScale(image, winStride=winStride,
+					padding = padding, scale = args["scale"],
+					useMeanShiftGrouping = meanShift)
+print("[Info] detection took: {}s".format (
+	(datetime.datetime.now() - start)))
+
+for (x, y, w, h) in rects:
+	cv2.rectangle(image, (x,y), (x + w, y + h), (0, 255, 0), 2)
 
 # show the output image
 cv2.imshow("Detections", image)
