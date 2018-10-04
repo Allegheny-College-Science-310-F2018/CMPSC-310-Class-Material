@@ -51,9 +51,9 @@ start = datetime.datetime.now()
 
 (rects, weights) = hog.detectMultiScale(image, winStride=winStride,
 					padding = padding, scale = args["scale"],
-					useMeanShiftGrouping = meanShift)
+					useMeanshiftGrouping = meanShift)
 print("[Info] detection took: {}s".format (
-	(datetime.datetime.now() - start)))
+	(datetime.datetime.now() - start).total_seconds()))
 
 for (x, y, w, h) in rects:
 	cv2.rectangle(image, (x,y), (x + w, y + h), (0, 255, 0), 2)

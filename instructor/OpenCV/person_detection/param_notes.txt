@@ -1,0 +1,36 @@
+NOTES ON PARAMETERS:
+
+win-stride: The smaller winStride  is, the more windows need to be evaluated
+
+An image pyramid is a multi-scale representation of an image: 
+At each layer of the image pyramid the image is downsized and (optionally) smoothed via a Gaussian filter. Keep in mind that for each layer of the pyramid a sliding window with winStride  steps is moved across the entire layer. While it’s important to evaluate multiple layers of the image pyramid, allowing us to find objects in our image at different scales, it also adds a significant computational burden since each layer also implies a series of sliding windows, HOG feature extractions, and decisions by our SVM must be performed.
+
+scale: This scale  parameter controls the factor in which our image is resized at each layer of the image pyramid, ultimately influencing the number of levels in the image pyramid.
+
+Typical values for scale  are normally in the range [1.01, 1.5]. If you intend on running detectMultiScale  in real-time, this value should be as large as possible without significantly sacrificing detection accuracy.
+
+
+1) TO DO: Try various win-stride values on various images, for example:
+
+python Detectmultiscale.py --image images/people1.jpg --win-stride="(4, 4)"
+python Detectmultiscale.py --image images/people1.jpg --win-stride="(16, 16)"
+
+OBSERVATIONS:
+
+
+2) TO DO: Try various scale values on various images, for example:
+
+python Detectmultiscale.py --image images/people1.jpg --scale 1.01
+python Detectmultiscale.py --image images/people1.jpg --scale 1.5
+
+OBSERVATIONS:
+
+
+
+3) TO DO: Try at least two different combinations of win-stride and scale values together on various images, for example:
+
+python Detectmultiscale.py --image images/people1.jpg --scale 1.03 --win-stride="(4, 4)"
+	
+OBSERVATIONS:
+
+
