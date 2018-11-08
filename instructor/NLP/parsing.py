@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-import urllib.request 
+import urllib.request
 
 import nltk
 
@@ -33,11 +33,9 @@ for token in tokens:
 freq = nltk.FreqDist(clean_tokens)
 print(freq.most_common())
 
-# The items() method returns a view object that displays 
+# The items() method returns a view object that displays
 # a list of a given dictionary's (key, value) tuple pair
-#for key,val in freq.items():
-#    print (str(key) + ':' + str(val) + '\n')
-    
-#freq.plot(20,cumulative=False)
+for key,val in freq.items():
+    print (str(key) + ':' + str(val) + '\n')
 
-
+freq.plot(20,cumulative=False)
