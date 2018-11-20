@@ -1,0 +1,4 @@
+embeddings {
+  tensor_name: "embeddings/Variable:0"
+  metadata_path: "/home/j/jjumadinova/repos/2018-2019/cs310f2018-class_material/instructor/NLP/log/metadata.tsv"
+}
